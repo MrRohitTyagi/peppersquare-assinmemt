@@ -1,9 +1,14 @@
+//Library Imports
 import Image from "next/image";
 import React from "react";
 
-const banner = "http://localhost:1337/uploads/science_exibition_5bcff026e1.png";
-type BannerProps = {};
-const Banner = (props: BannerProps) => {
+import env from "@/env";
+
+const BACKEND_BASE_URL = env.BACKEND_URL;
+
+const banner = `${BACKEND_BASE_URL}/uploads/science_exibition_5bcff026e1.png`;
+
+const Banner = () => {
   return (
     <div className="relative h-[300px] flex items-center justify-center text-white">
       <Image

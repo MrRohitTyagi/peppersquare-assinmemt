@@ -1,13 +1,23 @@
+//Library Imports
 import Image from "next/image";
 import Link from "next/link";
+
+//UI Components
 import Button from "@/components/ui/button";
+
+//Assets
 import Twitter from "@/public/assets/Twitter";
 import Instagram from "@/public/assets/Instagram";
 import Facebook from "@/public/assets/Facebook";
 import Youtube from "@/public/assets/Youtube";
 import LinkedIn from "@/public/assets/LinkedIn";
 
-const logo = "http://localhost:1337/uploads/logo_0478f96bb1.png";
+import env from "@/env";
+
+const BACKEND_BASE_URL = env.BACKEND_URL;
+
+const logo = `${BACKEND_BASE_URL}/uploads/logo_0478f96bb1.png`;
+
 export default function Footer() {
   return (
     <footer className="bg-gray-50">

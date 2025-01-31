@@ -1,4 +1,4 @@
-import { fetchEvents } from "@/components/gateways/eventGateway";
+import { fetchEvents } from "@/gateways/eventGateway";
 import { SingleEvent } from "@/types/eventType";
 import { create } from "zustand";
 

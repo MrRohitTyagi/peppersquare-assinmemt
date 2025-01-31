@@ -1,5 +1,6 @@
 "use client"; // Mark this as a Client Component
 
+//Library Imports
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
@@ -10,7 +11,7 @@ import { FilterType } from "@/types/filterType";
 import Button from "./ui/button";
 
 // Gateways
-import { fetchFilters } from "./gateways/filterGateway";
+import { fetchFilters } from "../gateways/filterGateway";
 
 import SkeletonLoader from "./ui/SkeletonLoader";
 
@@ -35,6 +36,7 @@ const Filters = ({ currentFilter }: { currentFilter: string }) => {
 
   const handleFilterClick = useCallback(
     (category: string) => {
+      // This Function will append the filter in URL params to preserv it after the reload
       const params = new URLSearchParams(searchParams.toString());
       params.set("category", category);
 

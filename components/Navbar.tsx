@@ -1,13 +1,18 @@
+//Library Imports
 import React from "react";
-
 import Image from "next/image";
 import Link from "next/link";
+
+// UI components
 import Button from "./ui/button";
 
-const logo = "http://localhost:1337/uploads/logo_0478f96bb1.png";
+import env from "@/env";
 
-type NavbarProps = {};
-const Navbar = (props: NavbarProps) => {
+const BACKEND_BASE_URL = env.BACKEND_URL;
+
+const logo = `${BACKEND_BASE_URL}/uploads/logo_0478f96bb1.png`;
+
+const Navbar = () => {
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">

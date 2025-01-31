@@ -1,12 +1,20 @@
 "use client";
 
+//Library Imports
 import React, { useMemo } from "react";
-import Button from "./ui/button";
 import Image from "next/image";
+
+// UI components
+import Button from "./ui/button";
+
+//Store
 import { useEvents } from "@/store/events";
+
 import SkeletonLoader from "./ui/SkeletonLoader";
 
-const BASE_URL = "http://localhost:1337";
+import env from "@/env";
+
+const BACKEND_BASE_URL = env.BACKEND_URL;
 
 const Events = ({ currentFilter }: { currentFilter: string }) => {
   const { events, isLoading } = useEvents();
@@ -26,7 +34,8 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
           <EventsLoader />
         ) : (
           filteredEvents.map((event, index) => {
-            const picture = event.picture[0].formats.small.url;
+            // this returns relative URL , we have to concat it with out BE base URl
+            const pictureUrl = event.picture[0].formats.small.url;
             return (
               <div
                 key={index}
@@ -34,7 +43,7 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
               >
                 <div className="relative h-56">
                   <Image
-                    src={BASE_URL + picture}
+                    src={BACKEND_BASE_URL + pictureUrl}
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"

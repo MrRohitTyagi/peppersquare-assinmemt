@@ -1,11 +1,10 @@
+import env from "@/env";
 import { SingleEvent } from "@/types/eventType";
 
-const BASE_URL = "http://localhost:1337";
+const BACKEND_BASE_URL = env.BACKEND_URL;
 
 export async function fetchEvents(): Promise<SingleEvent[]> {
-  const res = await fetch(`${BASE_URL}/api/events?populate=picture`, {
-    // cache: "no-store",
-  });
+  const res = await fetch(`${BACKEND_BASE_URL}/api/events?populate=picture`);
   const events = await res.json();
   return events.data;
 }
