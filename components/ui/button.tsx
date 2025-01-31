@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   ...props
 }) => {
-  const baseStyles = "rounded-[3px] font-medium  transition-colors";
+  const baseStyles = "font-medium  transition-colors";
 
   const variantStyles: Record<string, string> = {
     default: "",

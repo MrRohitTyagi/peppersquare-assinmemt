@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // UI components
-import Button from "./ui/button";
+import Button from "./ui/Button";
 
 import env from "@/env";
 
@@ -40,10 +40,10 @@ const Navbar = () => {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Button className="outline  outline-2 outline-red-500 text-black px-6 bg-transparent">
+          <Button className="rounded-sm outline outline-2 outline-red-500 text-black p-2 bg-transparent">
             CIR
           </Button>
-          <Button className="bg-red-500 hover:bg-red-600 text-white px-6">
+          <Button className="bg-red-500 rounded-sm hover:bg-red-600 text-white p-3">
             Donate 🤍
           </Button>
         </div>

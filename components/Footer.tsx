@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 //UI Components
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/Button";
 
 //Assets
 import Twitter from "@/public/assets/Twitter";
@@ -103,7 +103,7 @@ export default function Footer() {
             <p className="text-xl font-medium">
               Big or small, you can make an impact.
             </p>
-            <Button className="bg-red-500 hover:bg-red-600 text-white px-6">
+            <Button className="rounded-sm bg-red-500 hover:bg-red-600 text-white px-6">
               Donate 🤍
             </Button>
           </div>

@@ -8,7 +8,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { FilterType } from "@/types/filterType";
 
 //UI components
-import Button from "./ui/button";
+import Button from "./ui/Button";
 
 // Gateways
 import { fetchFilters } from "../gateways/filterGateway";

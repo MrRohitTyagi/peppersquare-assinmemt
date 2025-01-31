@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Button from "./Button";
 
 interface FullscreenCarouselProps {
   images: string[];
@@ -37,12 +38,12 @@ const FullscreenCarousel: React.FC<FullscreenCarouselProps> = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
       {/* Close Button */}
-      <button
+      <Button
         className="absolute top-6 right-6 text-white hover:text-gray-300 transition"
         onClick={onClose}
       >
         <X size={32} />
-      </button>
+      </Button>
 
       {/* Image Container */}
       <div className="relative w-full max-w-4xl px-4">
@@ -56,18 +57,18 @@ const FullscreenCarousel: React.FC<FullscreenCarouselProps> = ({
         />
 
         {/* Navigation Buttons */}
-        <button
+        <Button
           className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white hover:bg-opacity-70 transition"
           onClick={prevSlide}
         >
           <ChevronLeft size={36} />
-        </button>
-        <button
+        </Button>
+        <Button
           className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white hover:bg-opacity-70 transition"
           onClick={nextSlide}
         >
           <ChevronRight size={36} />
-        </button>
+        </Button>
       </div>
     </div>
   );

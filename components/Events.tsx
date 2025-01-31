@@ -5,7 +5,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 
 // UI components
-import Button from "./ui/button";
+import Button from "./ui/Button";
 import FullscreenCarousel from "./ui/Carousel";
 
 //Store
@@ -87,7 +87,9 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
       </div>
 
       <div className="text-center mt-8">
-        <Button variant="outline">View more</Button>
+        <Button className="border-2 border-red-500 text-red-500 rounded-sm">
+          View more
+        </Button>
       </div>
       {activeEvent.isOpen && (
         <FullscreenCarousel
