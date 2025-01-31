@@ -1,39 +1,38 @@
-import React from "react";
+"use client";
+
+import React, { useMemo } from "react";
 import Button from "./ui/button";
 import Image from "next/image";
+import { useEvents } from "@/store/events";
+import SkeletonLoader from "./ui/SkeletonLoader";
 
 const BASE_URL = "http://localhost:1337";
 
-type EventsProps = {};
+const Events = ({ currentFilter }: { currentFilter: string }) => {
+  const { events, isLoading } = useEvents();
 
-type SingleEvent = {
-  title: string;
-  date: string;
-  picture: { formats: { small: { url: string } } }[];
-};
-type EventsType = {
-  data: SingleEvent[];
-};
+  const filteredEvents = useMemo(() => {
+    return currentFilter === "ALL"
+      ? events
+      : events.filter((event) => {
+          return event.category === currentFilter;
+        });
+  }, [currentFilter, events]);
 
-const res = await fetch(`${BASE_URL}/api/events?populate=picture`, {
-  cache: "no-store",
-});
-const events: EventsType = await res.json();
-console.log(`%c events `, "color: orange;border:2px solid cyan", events);
-
-const Events = async (props: EventsProps) => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 cursor-pointer">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {events.data &&
-          events.data.map((event, index) => {
+        {isLoading ? (
+          <EventsLoader />
+        ) : (
+          filteredEvents.map((event, index) => {
             const picture = event.picture[0].formats.small.url;
             return (
               <div
                 key={index}
                 className="group border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
-                <div className="relative h-48">
+                <div className="relative h-56">
                   <Image
                     src={BASE_URL + picture}
                     alt={event.title}
@@ -47,7 +46,8 @@ const Events = async (props: EventsProps) => {
                 </div>
               </div>
             );
-          })}
+          })
+        )}
       </div>
 
       <div className="text-center mt-8">
@@ -56,37 +56,11 @@ const Events = async (props: EventsProps) => {
     </div>
   );
 };
-// const events = [
-//   {
-//     title: "NCC (National cadet corps)",
-//     date: "25 Jan 2024",
-//     image: "/placeholder.svg",
-//   },
-//   {
-//     title: "Science exhibition",
-//     date: "24 Jan 2024",
-//     image: "/placeholder.svg",
-//   },
-//   {
-//     title: "Alumni association",
-//     date: "23 Jan 2024",
-//     image: "/placeholder.svg",
-//   },
-//   {
-//     title: "Cleanliness drive",
-//     date: "22 Jan 2024",
-//     image: "/placeholder.svg",
-//   },
-//   {
-//     title: "Plantation day",
-//     date: "21 Jan 2024",
-//     image: "/placeholder.svg",
-//   },
-//   {
-//     title: "Annual day",
-//     date: "20 Jan 2024",
-//     image: "/placeholder.svg",
-//   },
-// ];
+
+const EventsLoader = () => {
+  return [1, 2, 3, 4, 5].map((e) => (
+    <SkeletonLoader key={e} className="h-60 w-full" />
+  ));
+};
 
 export default Events;

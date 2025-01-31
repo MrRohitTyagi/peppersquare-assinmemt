@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 
 type ButtonProps = {
   children: ReactNode;
-  variant?: "default" | "outline" | "ghost" | "destructive";
+  variant?: "default" | "outline" | "ghost" | "destructive" | "selected";
   size?: "sm" | "md" | "lg";
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -14,11 +14,11 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   ...props
 }) => {
-  const baseStyles =
-    "rounded-[3px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const baseStyles = "rounded-[3px] font-medium  transition-colors";
 
   const variantStyles: Record<string, string> = {
-    default: "bg-blue-600",
+    default: "",
+    selected: "bg-[#3481E8] text-white",
     outline: "border border-gray-300 text-gray-700 hover:bg-gray-100",
     ghost: "text-gray-700 hover:bg-gray-100",
     destructive: "bg-red-600 text-white hover:bg-red-700",
