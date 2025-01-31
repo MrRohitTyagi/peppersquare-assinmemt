@@ -12,11 +12,7 @@ import Facebook from "@/public/assets/Facebook";
 import Youtube from "@/public/assets/Youtube";
 import LinkedIn from "@/public/assets/LinkedIn";
 
-import env from "@/env";
-
-const BACKEND_BASE_URL = env.BACKEND_URL;
-
-const logo = `${BACKEND_BASE_URL}/uploads/logo_0478f96bb1.png`;
+import logo from "/public/assets/logo.png";
 
 export default function Footer() {
   return (

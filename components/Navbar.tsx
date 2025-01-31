@@ -5,12 +5,7 @@ import Link from "next/link";
 
 // UI components
 import Button from "./ui/Button";
-
-import env from "@/env";
-
-const BACKEND_BASE_URL = env.BACKEND_URL;
-
-const logo = `${BACKEND_BASE_URL}/uploads/logo_0478f96bb1.png`;
+import logo from "/public/assets/logo.png";
 
 const Navbar = () => {
   return (
