@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Footer from "@/components/Footer";
 import Filters from "@/components/Filters";
 import Banner from "@/components/Banner";
@@ -14,11 +16,13 @@ const App = () => {
         {/* Banner Section */}
         <Banner />
 
-        {/* Filters */}
-        <Filters />
+        <Suspense>
+          {/* Filters */}
+          <Filters />
 
-        {/* Events */}
-        <Events />
+          {/* Events */}
+          <Events />
+        </Suspense>
       </main>
 
       {/* Footer */}
