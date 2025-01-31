@@ -1,6 +1,5 @@
 import React from "react";
-type FacebookProps = {};
-const Facebook = (props: FacebookProps) => {
+const Facebook = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

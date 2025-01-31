@@ -1,6 +1,11 @@
-import { fetchEvents } from "@/gateways/eventGateway";
-import { SingleEvent } from "@/types/eventType";
+// Library import
 import { create } from "zustand";
+
+// Types
+import { SingleEvent } from "@/types/eventType";
+
+// Gateways
+import { fetchEvents } from "@/gateways/eventGateway";
 
 type EventStore = {
   events: SingleEvent[];
