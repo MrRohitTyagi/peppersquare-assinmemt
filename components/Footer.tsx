@@ -90,10 +90,10 @@ export default function Footer() {
               <p>Tamilnadu – 609001</p>
               <p className="pt-2">+91.436.422.3272</p>
               <Link
-                href="mailto:contact@nationalhighschool.in"
+                href="mailto:tyagi4366@gmail.com"
                 className="text-blue-600 hover:text-blue-700"
               >
-                contact@nationalhighschool.in
+                tyagi4366@gmail.com
               </Link>
             </div>
           </div>
