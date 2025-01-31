@@ -57,6 +57,7 @@ const Filters = ({ currentFilter }: { currentFilter: string }) => {
             return (
               <Button
                 key={filter.title}
+                className="rounded-3xl"
                 variant={isActive ? "selected" : "outline"}
                 onClick={() => handleFilterClick(filter.category)}
               >

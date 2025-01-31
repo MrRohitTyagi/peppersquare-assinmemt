@@ -1,7 +1,7 @@
 "use client";
 
 //Library Imports
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 
 // UI components
@@ -13,10 +13,19 @@ import { useEvents } from "@/store/events";
 import SkeletonLoader from "./ui/SkeletonLoader";
 
 import env from "@/env";
+import { SingleEvent } from "@/types/eventType";
+import FullscreenCarousel from "./ui/Carousel";
 
 const BACKEND_BASE_URL = env.BACKEND_URL;
 
 const Events = ({ currentFilter }: { currentFilter: string }) => {
+  const [activeEvent, setActiveEvent] = useState<{
+    isOpen: boolean;
+    pictures: string[];
+  }>({
+    isOpen: false,
+    pictures: [],
+  });
   const { events, isLoading } = useEvents();
 
   const filteredEvents = useMemo(() => {
@@ -26,6 +35,20 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
           return event.category === currentFilter;
         });
   }, [currentFilter, events]);
+
+  const handleCarouselOpen = useCallback((event: SingleEvent) => {
+    console.log("event", event);
+    setActiveEvent({
+      isOpen: true,
+      pictures: event.picture.map(
+        (pic) => `${BACKEND_BASE_URL}${pic.formats.small.url}`
+      ),
+    });
+  }, []);
+
+  const handleCarouselClose = useCallback(() => {
+    setActiveEvent({ isOpen: false, pictures: [] });
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8 cursor-pointer">
@@ -38,6 +61,9 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
             const pictureUrl = event.picture[0].formats.small.url;
             return (
               <div
+                onClick={() => {
+                  handleCarouselOpen(event);
+                }}
                 key={index}
                 className="group border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
@@ -62,6 +88,12 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
       <div className="text-center mt-8">
         <Button variant="outline">View more</Button>
       </div>
+      {activeEvent.isOpen && (
+        <FullscreenCarousel
+          onClose={handleCarouselClose}
+          images={activeEvent.pictures}
+        />
+      )}
     </div>
   );
 };
