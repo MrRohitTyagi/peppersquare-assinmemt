@@ -6,15 +6,16 @@ import Image from "next/image";
 
 // UI components
 import Button from "./ui/button";
+import FullscreenCarousel from "./ui/Carousel";
 
 //Store
 import { useEvents } from "@/store/events";
 
-import SkeletonLoader from "./ui/SkeletonLoader";
-
 import env from "@/env";
+// Types
 import { SingleEvent } from "@/types/eventType";
-import FullscreenCarousel from "./ui/Carousel";
+
+import SkeletonLoader from "./ui/SkeletonLoader";
 
 const BACKEND_BASE_URL = env.BACKEND_URL;
 
