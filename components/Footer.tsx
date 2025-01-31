@@ -143,7 +143,7 @@ export default function Footer() {
           {/* Designer Credit */}
           <div className="text-sm text-gray-600">
             Designed by{" "}
-            <Link href="#" className="font-medium">
+            <Link href="#" className="font-medium text-3xl">
               PEPPER <span className="text-red-500">SQUARE</span>
             </Link>
           </div>
