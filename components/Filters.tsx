@@ -1,4 +1,4 @@
-"use client"; // Mark this as a Client Component
+"use client";
 
 //Library Imports
 import React, { useCallback, useEffect, useState } from "react";
@@ -13,11 +13,15 @@ import Button from "./ui/Button";
 // Gateways
 import { fetchFilters } from "../gateways/filterGateway";
 
+//Hooks
+import useQuery from "@/hooks/useQuery";
+
 import SkeletonLoader from "./ui/SkeletonLoader";
 
-const Filters = ({ currentFilter }: { currentFilter: string }) => {
+const Filters = () => {
   //Hooks
   const router = useRouter();
+  const currentFilter = useQuery("category") || "ALL";
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -73,7 +77,7 @@ const Filters = ({ currentFilter }: { currentFilter: string }) => {
 
 const FilterLoader = () => {
   return [1, 2, 3, 4, 5].map((e) => (
-    <SkeletonLoader key={e} className="h-12 w-40" />
+    <SkeletonLoader key={e} className="h-12 w-40 rounded-3xl" />
   ));
 };
 

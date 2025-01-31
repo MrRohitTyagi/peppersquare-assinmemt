@@ -15,11 +15,16 @@ import env from "@/env";
 // Types
 import { SingleEvent } from "@/types/eventType";
 
+//Hooks
+import useQuery from "@/hooks/useQuery";
+
 import SkeletonLoader from "./ui/SkeletonLoader";
 
 const BACKEND_BASE_URL = env.BACKEND_URL;
 
-const Events = ({ currentFilter }: { currentFilter: string }) => {
+const Events = () => {
+  const currentFilter = useQuery("category") || "ALL";
+
   const [activeEvent, setActiveEvent] = useState<{
     isOpen: boolean;
     pictures: string[];
@@ -38,7 +43,6 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
   }, [currentFilter, events]);
 
   const handleCarouselOpen = useCallback((event: SingleEvent) => {
-    console.log("event", event);
     setActiveEvent({
       isOpen: true,
       pictures: event.picture.map(
@@ -103,7 +107,7 @@ const Events = ({ currentFilter }: { currentFilter: string }) => {
 
 const EventsLoader = () => {
   return [1, 2, 3, 4, 5].map((e) => (
-    <SkeletonLoader key={e} className="h-60 w-full" />
+    <SkeletonLoader key={e} className="h-60 w-full rounded-md" />
   ));
 };
 
