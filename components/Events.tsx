@@ -11,7 +11,6 @@ import FullscreenCarousel from "./ui/Carousel";
 //Store
 import { useEvents } from "@/store/events";
 
-import env from "@/env";
 // Types
 import { SingleEvent } from "@/types/eventType";
 
@@ -19,8 +18,6 @@ import { SingleEvent } from "@/types/eventType";
 import useQuery from "@/hooks/useQuery";
 
 import SkeletonLoader from "./ui/SkeletonLoader";
-
-const BACKEND_BASE_URL = env.BACKEND_URL;
 
 const Events = () => {
   const currentFilter = useQuery("category") || "ALL";
@@ -45,9 +42,7 @@ const Events = () => {
   const handleCarouselOpen = useCallback((event: SingleEvent) => {
     setActiveEvent({
       isOpen: true,
-      pictures: event.picture.map(
-        (pic) => `${BACKEND_BASE_URL}${pic.formats.small.url}`
-      ),
+      pictures: event.picture.map((pic) => pic.formats.small.url),
     });
   }, []);
 
@@ -74,7 +69,7 @@ const Events = () => {
               >
                 <div className="relative h-56">
                   <Image
-                    src={BACKEND_BASE_URL + pictureUrl}
+                    src={pictureUrl}
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
