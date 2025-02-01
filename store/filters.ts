@@ -6,7 +6,7 @@ import { FilterType } from "@/types/filterType";
 
 // Gateways
 import { fetchFilters } from "@/controllers/filterController";
-import { getErrorMessage } from "@/utils";
+import { getErrorMessage } from "@/helpers/utils";
 
 type FilterStore = {
   filters: FilterType[];

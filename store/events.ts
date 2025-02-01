@@ -6,7 +6,7 @@ import { SingleEvent } from "@/types/eventType";
 
 // Gateways
 import { fetchEvents } from "@/controllers/eventController";
-import { getErrorMessage } from "@/utils";
+import { getErrorMessage } from "@/helpers/utils";
 
 type EventStore = {
   events: SingleEvent[];
