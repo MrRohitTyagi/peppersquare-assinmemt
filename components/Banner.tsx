@@ -2,11 +2,8 @@
 import Image from "next/image";
 import React from "react";
 
-import env from "@/env";
-
-const BACKEND_BASE_URL = env.BACKEND_URL;
-
-const banner = `${BACKEND_BASE_URL}/uploads/science_exibition_5bcff026e1.png`;
+// Assets
+import banner from "/public/assets/banner.png";
 
 const Banner = () => {
   return (

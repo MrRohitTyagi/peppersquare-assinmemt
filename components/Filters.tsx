@@ -11,7 +11,7 @@ import { FilterType } from "@/types/filterType";
 import Button from "./ui/Button";
 
 // Gateways
-import { fetchFilters } from "../gateways/filterGateway";
+import { fetchFilters } from "../controllers/filterController";
 
 //Hooks
 import useQuery from "@/hooks/useQuery";

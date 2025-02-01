@@ -5,7 +5,7 @@ import { create } from "zustand";
 import { SingleEvent } from "@/types/eventType";
 
 // Gateways
-import { fetchEvents } from "@/gateways/eventGateway";
+import { fetchEvents } from "@/controllers/eventController";
 
 type EventStore = {
   events: SingleEvent[];
