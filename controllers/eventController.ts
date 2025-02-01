@@ -1,5 +1,5 @@
 // Library imports
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import env from "@/env";
 
@@ -19,6 +19,6 @@ export async function fetchEvents(): Promise<SingleEvent[]> {
     );
     return data.data;
   } catch (error) {
-    return [];
+    throw new Error("Failed to fetch events, please try again later");
   }
 }

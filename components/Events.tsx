@@ -29,7 +29,7 @@ const Events = () => {
     isOpen: false,
     pictures: [],
   });
-  const { events, isLoading } = useEvents();
+  const { events, isLoading, error } = useEvents();
 
   const filteredEvents = useMemo(() => {
     return currentFilter === "ALL"
@@ -49,6 +49,10 @@ const Events = () => {
   const handleCarouselClose = useCallback(() => {
     setActiveEvent({ isOpen: false, pictures: [] });
   }, []);
+
+  if (error) {
+    return <div className="text-center text-red-500 text-lg py-8">{error}</div>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8 cursor-pointer">

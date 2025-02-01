@@ -1,22 +1,17 @@
 "use client";
 
 //Library Imports
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-
-//Types
-import { FilterType } from "@/types/filterType";
 
 //UI components
 import Button from "./ui/Button";
-
-// Gateways
-import { fetchFilters } from "../controllers/filterController";
 
 //Hooks
 import useQuery from "@/hooks/useQuery";
 
 import SkeletonLoader from "./ui/SkeletonLoader";
+import { useFilters } from "@/store/filters";
 
 const Filters = () => {
   //Hooks
@@ -26,29 +21,20 @@ const Filters = () => {
   const searchParams = useSearchParams();
 
   //States
-  const [filters, setfilters] = useState<FilterType[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { error, filters, isLoading } = useFilters();
 
-  useEffect(() => {
-    async function init() {
-      const data = await fetchFilters();
-      setfilters(data);
-      setIsLoading(false);
-    }
-    init();
-  }, []);
+  const handleFilterClick = (category: string) => {
+    // This Function will append the filter in URL params to preserv it after the reload
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("category", category);
 
-  const handleFilterClick = useCallback(
-    (category: string) => {
-      // This Function will append the filter in URL params to preserv it after the reload
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("category", category);
+    // Update the URL with the new query parameters
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
-      // Update the URL with the new query parameters
-      router.push(`${pathname}?${params.toString()}`);
-    },
-    [pathname, router, searchParams]
-  );
+  if (error) {
+    return <div className="text-center text-red-500 text-lg py-8">{error}</div>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

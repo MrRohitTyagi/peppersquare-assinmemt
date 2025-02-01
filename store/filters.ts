@@ -2,23 +2,23 @@
 import { create } from "zustand";
 
 // Types
-import { SingleEvent } from "@/types/eventType";
+import { FilterType } from "@/types/filterType";
 
 // Gateways
-import { fetchEvents } from "@/controllers/eventController";
+import { fetchFilters } from "@/controllers/filterController";
 import { getErrorMessage } from "@/utils";
 
-type EventStore = {
-  events: SingleEvent[];
+type FilterStore = {
+  filters: FilterType[];
   isLoading: boolean;
   error: null | string;
 };
 
-export const useEvents = create<EventStore>((set) => {
+export const useFilters = create<FilterStore>((set) => {
   const initEvents = async () => {
     try {
-      const data = await fetchEvents();
-      set({ events: data, isLoading: false });
+      const data = await fetchFilters();
+      set({ filters: data, isLoading: false });
     } catch (error) {
       set({ error: getErrorMessage(error), isLoading: false });
     }
@@ -26,7 +26,7 @@ export const useEvents = create<EventStore>((set) => {
   initEvents();
   return {
     error: null,
-    events: [],
+    filters: [],
     isLoading: true,
   };
 });

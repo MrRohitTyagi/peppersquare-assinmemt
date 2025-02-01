@@ -14,9 +14,8 @@ export async function fetchFilters(): Promise<FilterType[]> {
   // This function is responsible for fetching filters from DB
   try {
     const { data } = await axios.get(`${BACKEND_BASE_URL}/api/filters`);
-
     return data.data;
   } catch (error) {
-    return [];
+    throw new Error("Failed to fetch Filters, please try again later");
   }
 }
